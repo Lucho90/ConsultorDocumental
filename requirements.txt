@@ -3,3 +3,6 @@ uvicorn
 llama-index
 llama-index-readers
 llama-index-embeddings-huggingface
+transformers
+sentence-transformers
+
