@@ -11,17 +11,18 @@ app = FastAPI()
 
 class Consulta(BaseModel):
     pregunta: str
-    carpeta: str
 
 @app.post("/consultar")
 async def consultar(data: Consulta):
     try:
         documents = []
+        folder_path = "./documentos"  # Carpeta fija dentro del proyecto
+
         pdf_loader = PDFReader()
         docx_loader = DocxReader()
 
-        for filename in os.listdir(data.carpeta):
-            file_path = os.path.join(data.carpeta, filename)
+        for filename in os.listdir(folder_path):
+            file_path = os.path.join(folder_path, filename)
             if filename.endswith(".pdf"):
                 documents.extend(pdf_loader.load_data(file_path))
             elif filename.endswith(".docx"):
